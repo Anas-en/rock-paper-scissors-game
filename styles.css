@@ -22,7 +22,7 @@ body{
     font-size: 27px;
     font-weight: bold;
 }
-.reset{
+.reset,.autoplay{
     height: 40px;
     width:100px;
     font-family: Arial, Helvetica, sans-serif;
@@ -33,4 +33,21 @@ body{
 .scoreboard{
     font-family: Arial, Helvetica, sans-serif;
     font-size: medium;
+}
+.messageforreset{
+    margin-top: 40px;
+    margin-bottom: 18px;
+}
+.yes-no{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.js-button-resetyes,.js-button-resetno{
+    height: 45px;
+    width: 80px;
+    border: none;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:medium;
 }
