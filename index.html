@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rock-paper-scissors</title>
+    <title>12-rock-paper-scissors</title>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,33 +12,23 @@
 <body>
     <p class="main">Rock paper scissors </p>
 
-    <button class="rock move-icon" onclick="
-     playgame('rock');
+    <button class="rock move-icon js-rock-button" 
+    ><img src="rock-emoji.png" alt="" width="100px" height="100px"></button>
 
-    "><img src="rock-emoji.png" alt="" width="100px" height="100px"></button>
+    <button class="paper move-icon js-paper-button" 
+     ><img src="paper-emoji.png" alt="" width="100px" height="100px"></button>
 
-    <button class="paper move-icon" onclick="
-     playgame('paper');
-     
-    "><img src="paper-emoji.png" alt="" width="100px" height="100px"></button>
-
-    <button class="scissors move-icon" onclick="
-     playgame('scissors');
-
-    "><img src="scissors-emoji.png" alt="" width="100px" height="100px"></button>
+    <button class="scissors move-icon js-scissor-button" 
+     ><img src="scissors-emoji.png" alt="" width="100px" height="100px"></button>
 
     <p class="winorlose"></p>
     <p class="currentgame"></p>
     <p class="scoreboard"></p>
 
-    <button class="reset" onclick="
-    score.wins=0;
-    score.loses=0;
-    score.ties=0;
-    localStorage.removeItem('score');
-    reset();
-    ">reset score
+    <button class="reset">reset score
     </button>
+    <button class="autoplay" onclick="autoplay();">Auto Play</button>
+    <div class="resetconfirm"></div>
 
     <script src="script.js"></script>
 </body>
