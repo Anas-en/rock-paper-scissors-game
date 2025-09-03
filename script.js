@@ -35,6 +35,19 @@ const score = JSON.parse(localStorage.getItem('score')) || {
 
         }
 
+        //keydown event
+
+        document.body.addEventListener('keydown',(event)=>{
+            console.log(event.key);
+            
+            if(event.key==='r'){
+                playgame('rock');
+            }else if (event.key==='s'){
+                playgame('scissor');
+            }else if(event.key==='p'){
+                playgame('paper');
+            }
+        })
 
         function playgame(playermove) {
             const compMove = pickcomputermove();
@@ -90,4 +103,82 @@ wins: ${score.wins} loses: ${score.loses} ties: ${score.ties}`);*/
             document.querySelector('.currentgame').innerText = 'make your choice';
             document.querySelector('.scoreboard').innerText = `Wins :${score.wins} , loses: ${score.loses} , ties: ${score.ties}`;
         }
+        let isAutoplaying = false;
+        let intervalId ;
+
+
+        function autoplay(){
+            let element= document.querySelector('.autoplay');
+            if(!isAutoplaying){
+            intervalId =  setInterval(() =>{  //changed to arrow function
+                let move = pickcomputermove();//if a function is inside another func .. prefer arrow funcn 
+                playgame(move);                 //or this is a personal choice
+                
+            },1000);
+            isAutoplaying = true;
+            element.innerText='stop play';
+            }else{
+                clearInterval(intervalId);
+                isAutoplaying=false;
+               element.innerText='Auto play';
+            }
+
+        }   
+        document.querySelector('.js-rock-button').addEventListener('click',() => {
+            playgame('rock');
+        });
+        document.querySelector('.js-paper-button').addEventListener('click',()=>{
+            playgame('paper');
+        });
+        document.querySelector('.js-scissor-button').addEventListener('click',()=>{
+            playgame('scissor');
+        });
+
+
+        document.body.addEventListener('keydown',(event)=>{
+            if(event.key=='a'){
+                autoplay();
+                console.log(evenat);
+            }else{
+                return;
+            }
+        });
+        document.body.addEventListener('keydown',(event)=>{
+            if(event.key==' '){
+            score.wins=0;
+            score.loses=0;
+            score.ties=0;
+            localStorage.removeItem('score');
+            reset();
+            }else{
+                return;
+            }
+        });
+        let resetbutton= document.querySelector('.reset');
+
+        resetbutton.addEventListener('click',()=>{
+            let confirmation = '';
+            let resetelement = document.querySelector('.resetconfirm');
+            const html = `<div class ="messageforreset" >are you sure you want to reset the score?</div>
+            <div class=yes-no>
+            <button class="js-button-resetyes">Yes</button>
+            <button class="js-button-resetno">no</button>
+            </div>`
+            resetelement.innerHTML= html ;
+                        
+                        const elementresetyes =document.querySelector('.js-button-resetyes');
+                        const elementresetno =document.querySelector('.js-button-resetno');
+                        elementresetyes.addEventListener('click',()=>{
+                            score.wins=0;
+                            score.loses=0;
+                            score.ties=0;
+                            localStorage.removeItem('score');
+                            reset();
+                            resetelement.innerHTML='';
+                                 });
+                        elementresetno.addEventListener('click',()=>{
+                            resetelement.innerHTML='';
+                            
+                        })
+        })
          document.querySelector('.scoreboard').innerText = `Wins :${score.wins} , loses: ${score.loses} , ties: ${score.ties}`;
